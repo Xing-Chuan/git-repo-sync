@@ -1,0 +1,25 @@
+{
+  "name": "git-repo-sync",
+  "version": "0.0.1",
+  "description": "This is a sync tool by git repository",
+  "main": "index.js",
+  "bin": {
+    "gsync": "bin/gsync"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "git",
+    "repository",
+    "sync",
+    "tool"
+  ],
+  "author": "wanggm",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.15.1",
+    "inquirer": "^6.0.0",
+    "shelljs": "^0.8.2"
+  }
+}

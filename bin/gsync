@@ -1,0 +1,52 @@
+#! /usr/bin/env node
+
+let program = require('commander');
+let inquirer = require('inquirer');
+let shell = require('shelljs');
+let path = require('path');
+// console.log(path.join('/foo', 'bar', 'baz/asdf', 'quux', '.'));
+console.log(process.pid);
+console.log(process.platform);
+console.log(path.resolve('baz', 'js','test'));
+let packageJson = require('../package.json');
+
+//判定git命令是否可用
+if (!shell.which('git')) {
+	//向命令行打印git命令不可用的提示信息
+    shell.echo('Sorry, this script requires git');
+    //退出当前进程
+    shell.exit(1);
+}
+
+program
+  .version(packageJson.version)
+  .usage('[options] <file ...>')
+  .option('-p, --publish', 'publish to git repository')
+  .parse(process.argv);
+
+console.log(' args: %j', program.args);
+
+shell.exec('git status', {silent: true}, (err, stdout, stderr) => {
+  console.log('stderr: ->', stderr);
+  console.log('stdout: ->', stdout);
+});
+// console.log(shell.exec('git status'));
+
+// inquirer.prompt([
+//   {
+//     type: 'confirm',
+//     name: 'test',
+//     message: 'Are you handsome?',
+//     default: true
+//   },
+//   {
+//     type: 'list',
+//     name: 'list',
+//     message: 'Are you list?',
+//     choices: ['apple', 'phone', 'tel'],
+//     default: true
+//   }
+// ]).then((answers) => {
+//   console.log('结果为:')
+//   console.log(answers)
+// })
